@@ -21,8 +21,9 @@
 		zip
 		lshw
 
-#Compiler
-    gcc
+        #Compiler
+        gcc
+        gnumake
 
 
 		home-manager
