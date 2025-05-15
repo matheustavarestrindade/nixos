@@ -21,6 +21,9 @@
 		zip
 		lshw
 
+#Compiler
+    gcc
+
 
 		home-manager
 	];
