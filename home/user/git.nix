@@ -1,3 +1,4 @@
+{pkgs, ...}:
 let
 	userName = "matheustrindade";
 	email = "matheustavarestrindade@hotmail.com";
@@ -7,5 +8,12 @@ in
 		enable = true;
 		userName = userName;
 		userEmail = email;
+	};
+
+	programs.gh = {
+		enable = true;
+		gitCredentialHelper = {
+			enable = true;
+		};
 	};
 }

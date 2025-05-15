@@ -11,7 +11,6 @@ in {
 	services.xserver.videoDrivers = ["nvidia"];
 
 	hardware = {
-	
 		nvidia = {
 			modesetting.enable = true;
 
@@ -23,15 +22,13 @@ in {
 			package = config.boot.kernelPackages.nvidiaPackages.stable;
 
 			prime = {
+				# sync.enable = true;
+				# offload.enable = true;
+				# offload.enableOffloadCmd = true;
 				nvidiaBusId = "PCI:01:0:0";
 				amdgpuBusId = "PCI:05:0:0";
 			};
 		};
-		# graphics = {
-		# 	package = hypr-pkgs-unstable.mesa.drivers;
-		# 	# driSupport32Bit  = true;
-		# 	package32 = hypr-pkgs-unstable.pkgsi686Linux.mesa.drivers;
-		# };
 	};
 
 
