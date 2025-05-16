@@ -12,6 +12,7 @@
 		./sound.nix
 		./services.nix
 		./nvidia.nix
+        ./fonts.nix
 	];
 
 
