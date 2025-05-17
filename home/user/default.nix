@@ -5,7 +5,7 @@
 		./packages.nix
 		./browser.nix
 		./environment.nix
-        ./waybar.nix
+        ./hyprland
 	];
 
 	nixpkgs = {

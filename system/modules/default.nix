@@ -2,7 +2,7 @@
 
 {
 	imports = [
-		./hyprland.nix
+		./hyprland
 		./hardware.nix
 		./nixsettings.nix
 		./networking.nix

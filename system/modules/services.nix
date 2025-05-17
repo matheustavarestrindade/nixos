@@ -16,34 +16,17 @@
 	services = {
 		dbus.enable = true;
 		openssh.enable = true;
+        displayManager.sddm = {
+            enable = true;
+            wayland.enable = true;
+            package = pkgs.kdePackages.sddm;
+            theme = "sddm-astronaut-theme";
+            extraPackages = with pkgs; [
+                kdePackages.qtmultimedia
+                kdePackages.qtsvg
+                kdePackages.qtvirtualkeyboard
+            ];
+        };
 
-		xserver = {
-			displayManager.sddm = {
-				enable = true;
-				wayland.enable = true;
-				package = pkgs.kdePackages.sddm;
-				theme = "sddm-astronaut-theme";
-				extraPackages = with pkgs; [
-					kdePackages.qtmultimedia
-					kdePackages.qtsvg
-					kdePackages.qtvirtualkeyboard
-				];
-			};
-			xkb = {
-				layout = "br";
-				variant = "nodeadkeys";
-			};
-
-		};
-
-		# displayManager = {
-		# 	enable = true;
-		# 	sddm = {
-		# 		enable = true;
-		# 		wayland = {
-		# 			enable = true;
-		# 		};
-		# 	};
-		# };
 	};
 }
