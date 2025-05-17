@@ -6,7 +6,7 @@
 }: let
   terminal = "kitty"; # Or specify pkgs.kitty if managed by Nix
   fileManager = "dolphin"; # Or pkgs.dolphin
-  menu = "wofi --show drun"; # Or use a path from pkgs.wofi
+  menu = "rofi -show drun"; # Or use a path from pkgs.wofi
   mainMod = "SUPER"; # "Windows" key
 in {
   wayland.windowManager.hyprland = {

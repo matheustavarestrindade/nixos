@@ -11,7 +11,7 @@
 		#File Manager
 		dolphin
 		# Menu
-		wofi
+        rofi
 		# Wallpaper
 		hyprpaper
 		# Brightness Control
