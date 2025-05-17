@@ -148,8 +148,8 @@ in
       }
 
       #workspaces button.active {
-        color: #33ccffee;
-        border-top: 2px solid #33ccffee;
+        color: #33ccff;
+        border-top: 2px solid #33ccff;
       }
 
       /* #mode was removed, so its style is no longer needed unless reused */

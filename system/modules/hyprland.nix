@@ -19,6 +19,5 @@
 		wlogout
 		wl-clipboard
 		wofi
-		waybar
 	];
 }

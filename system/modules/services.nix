@@ -17,7 +17,6 @@
 		dbus.enable = true;
 		openssh.enable = true;
 
-		# Configure keymap in X11
 		xserver = {
 			displayManager.sddm = {
 				enable = true;
