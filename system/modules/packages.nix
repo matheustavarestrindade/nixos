@@ -8,6 +8,8 @@
 		neofetch
 		neovim
 		ripgrep
+        fd
+        screen
 		unzip
 		openssl
 		openssl.dev

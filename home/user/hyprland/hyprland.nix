@@ -1,238 +1,240 @@
 {
-  config,
-  pkgs,
-  lib,
-  ...
+	config,
+	pkgs,
+	lib,
+	...
 }: let
-  terminal = "kitty"; # Or specify pkgs.kitty if managed by Nix
-  fileManager = "dolphin"; # Or pkgs.dolphin
-  menu = "rofi -show drun"; # Or use a path from pkgs.wofi
-  mainMod = "SUPER"; # "Windows" key
+	terminal = "kitty"; # Or specify pkgs.kitty if managed by Nix
+	fileManager = "dolphin"; # Or pkgs.dolphin
+	menu = "rofi -show drun"; # Or use a path from pkgs.wofi
+	mainMod = "SUPER"; # "Windows" key
 in {
-  wayland.windowManager.hyprland = {
-    enable = true;
+	wayland.windowManager.hyprland = {
+		enable = true;
 
-    settings = {
-      # MONITORS
-      monitor = [
-        ",preferred,auto,1.5"
-      ];
+		settings = {
+			# MONITORS
+			monitor = [
+				",preferred,auto,1.5"
+			];
 
-      env = [
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
-        # "LIBVA_DRIVER_NAME,nvidia" # NVIDIA (commented as in original)
-        # "__GLX_VENDOR_LIBRARY_NAME,nvidia" # NVIDIA (commented as in original)
-        # "ELECTRON_OZONE_PLATFORM_HINT,auto" # NVIDIA (commented as in original)
-        # "NVD_BACKEND,direct" # NVIDIA (commented as in original)
-        "AQ_DRM_DEVICES,/dev/dri/card2:/dev/dri/card1" # AMD iGPU (corrected path)
-      ];
+			env = [
+				"XCURSOR_SIZE,24"
+				"HYPRCURSOR_SIZE,24"
+				"LIBVA_DRIVER_NAME,nvidia" # NVIDIA (commented as in original)
+				"__GLX_VENDOR_LIBRARY_NAME,nvidia" # NVIDIA (commented as in original)
+				"ELECTRON_OZONE_PLATFORM_HINT,auto" # NVIDIA (commented as in original)
+				"NVD_BACKEND,direct" # NVIDIA (commented as in original)
+				"AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1" # AMD iGPU (corrected path)
+			];
 
-      # LOOK AND FEEL
-      general = {
-        gaps_in = 2;
-        gaps_out = 2;
-        border_size = 1;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
-        resize_on_border = false;
-        allow_tearing = false;
-        layout = "dwindle";
-      };
+			# LOOK AND FEEL
+			general = {
+				gaps_in = 2;
+				gaps_out = 2;
+				border_size = 1;
+				"col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+				"col.inactive_border" = "rgba(595959aa)";
+				resize_on_border = false;
+				allow_tearing = false;
+				layout = "dwindle";
+			};
 
-      decoration = {
-        rounding = 5;
-        active_opacity = 1.0;
-        inactive_opacity = 1.0;
+			decoration = {
+				rounding = 5;
+				active_opacity = 1.0;
+				inactive_opacity = 1.0;
 
-        shadow = {
-          enabled = true; # Mapped from shadow.enabled
-          range = 4;
-          render_power = 3;
-          color = "rgba(1a1a1aee)"; # Mapped from shadow.color
-        };
+				shadow = {
+					enabled = true; # Mapped from shadow.enabled
+					range = 4;
+					render_power = 3;
+					color = "rgba(1a1a1aee)"; # Mapped from shadow.color
+				};
 
-        # Blur settings
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-          vibrancy = 0.1696;
-          # Add other blur options here if needed, e.g.:
-          # new_optimizations = true;
-        };
-      };
+				# Blur settings
+				blur = {
+					enabled = true;
+					size = 3;
+					passes = 1;
+					vibrancy = 0.1696;
+					# Add other blur options here if needed, e.g.:
+					# new_optimizations = true;
+				};
+			};
 
-      animations = {
-        enabled = true;
+			animations = {
+				enabled = true;
 
-        bezier = [
-          "easeOutQuint,0.23,1,0.32,1"
-          "easeInOutCubic,0.65,0.05,0.36,1"
-          "linear,0,0,1,1"
-          "almostLinear,0.5,0.5,0.75,1.0"
-          "quick,0.15,0,0.1,1"
-        ];
+				bezier = [
+					"easeOutQuint,0.23,1,0.32,1"
+					"easeInOutCubic,0.65,0.05,0.36,1"
+					"linear,0,0,1,1"
+					"almostLinear,0.5,0.5,0.75,1.0"
+					"quick,0.15,0,0.1,1"
+				];
 
-        animation = [
-          "global, 1, 10, default"
-          "border, 1, 5.39, easeOutQuint"
-          "windows, 1, 4.79, easeOutQuint"
-          "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-          "windowsOut, 1, 1.49, linear, popin 87%"
-          "fadeIn, 1, 1.73, almostLinear"
-          "fadeOut, 1, 1.46, almostLinear"
-          "fade, 1, 3.03, quick"
-          "layers, 1, 3.81, easeOutQuint"
-          "layersIn, 1, 4, easeOutQuint, fade"
-          "layersOut, 1, 1.5, linear, fade"
-          "fadeLayersIn, 1, 1.79, almostLinear"
-          "fadeLayersOut, 1, 1.39, almostLinear"
-          "workspaces, 1, 1.94, almostLinear, fade"
-          "workspacesIn, 1, 1.21, almostLinear, fade"
-          "workspacesOut, 1, 1.94, almostLinear, fade"
-        ];
-      };
+				animation = [
+					"global, 1, 10, default"
+					"border, 1, 5.39, easeOutQuint"
+					"windows, 1, 4.79, easeOutQuint"
+					"windowsIn, 1, 4.1, easeOutQuint, popin 87%"
+					"windowsOut, 1, 1.49, linear, popin 87%"
+					"fadeIn, 1, 1.73, almostLinear"
+					"fadeOut, 1, 1.46, almostLinear"
+					"fade, 1, 3.03, quick"
+					"layers, 1, 3.81, easeOutQuint"
+					"layersIn, 1, 4, easeOutQuint, fade"
+					"layersOut, 1, 1.5, linear, fade"
+					"fadeLayersIn, 1, 1.79, almostLinear"
+					"fadeLayersOut, 1, 1.39, almostLinear"
+					"workspaces, 1, 1.94, almostLinear, fade"
+					"workspacesIn, 1, 1.21, almostLinear, fade"
+					"workspacesOut, 1, 1.94, almostLinear, fade"
+				];
+			};
 
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
+			dwindle = {
+				pseudotile = true;
+				preserve_split = true;
+			};
 
-      master = {
-        new_status = "master";
-      };
+			master = {
+				new_status = "master";
+			};
 
-      misc = {
-        force_default_wallpaper = -1; # -1 means default Hyprland behavior (3 wallpapers)
-        disable_hyprland_logo = false;
-        # enable_swallow = true; # Example: if you want to enable swallow
-        # swallow_regex = "^(kitty)$";
-      };
+			misc = {
+				force_default_wallpaper = -1; # -1 means default Hyprland behavior (3 wallpapers)
+				disable_hyprland_logo = true;
+				# enable_swallow = true; # Example: if you want to enable swallow
+				# swallow_regex = "^(kitty)$";
+			};
 
-      # INPUT SETTINGS
-      input = {
-        kb_layout = "br";
-        kb_variant = "abnt2";
-        kb_model = "";
-        kb_options = "";
-        kb_rules = "";
+			# INPUT SETTINGS
+			input = {
+				kb_layout = "br";
+				kb_variant = "abnt2";
+				kb_model = "";
+				kb_options = "";
+				kb_rules = "";
 
-        follow_mouse = 1;
-        sensitivity = 0.0; # Float value
+				follow_mouse = 1;
+				sensitivity = 0.0; # Float value
 
-        touchpad = {
-          natural_scroll = false;
-        };
-      };
+				touchpad = {
+					natural_scroll = false;
+				};
+			};
 
-      gestures = {
-        workspace_swipe = false;
-      };
-    };
+			gestures = {
+				workspace_swipe = false;
+			};
+		};
 
-    # For settings not directly covered by Nix options, or for easier migration of existing configs.
-    # This includes autostart (exec-once), keybindings, and specific window rules.
-    extraConfig = ''
-      # #######################################################################################
-      # AUTOGENERATED HYPR CONFIG SECTION FROM extraConfig
-      # #######################################################################################
+		# For settings not directly covered by Nix options, or for easier migration of existing configs.
+		# This includes autostart (exec-once), keybindings, and specific window rules.
+		extraConfig = ''
+			# #######################################################################################
+			# AUTOGENERATED HYPR CONFIG SECTION FROM extraConfig
+			# #######################################################################################
 
-      # Autostart necessary processes
-      # Consider managing these with systemd services or Home Manager services for better control.
-      exec-once = waybar
-      # exec-once = ${terminal} # Example if you want to autostart terminal
-      # exec-once = nm-applet # The '&' is usually not needed with exec-once
-      # exec-once = hyprpaper # Example, if you had 'waybar & hyprpaper & firefox'
-      # exec-once = firefox   # Split combined exec-once lines
+			# Autostart necessary processes
+			# Consider managing these with systemd services or Home Manager services for better control.
 
-      # Workspace rules (commented out as in original)
-      # workspace = w[tv1], gapsout:0, gapsin:0
-      # workspace = f[1], gapsout:0, gapsin:0
-      # windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
-      # windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
-      # windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
-      # windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
+			exec-once = ${terminal} # Example if you want to autostart terminal
+			exec-once = sleep 1 && waybar
+			exec-once = [workspace 2 silent] google-chrome-stable
+			# exec-once = nm-applet # The '&' is usually not needed with exec-once
+			# exec-once = hyprpaper # Example, if you had 'waybar & hyprpaper & firefox'
+			# exec-once = firefox   # Split combined exec-once lines
 
-      # Keybindings
-      # Using Nix variables for $mainMod, $terminal, etc.
-      $mainMod = ${mainMod}
-      $terminal = ${terminal}
-      $fileManager = ${fileManager}
-      $menu = ${menu} # Ensure programs with arguments are quoted if needed by Hyprland syntax
+			# Workspace rules (commented out as in original)
+			# workspace = w[tv1], gapsout:0, gapsin:0
+			# workspace = f[1], gapsout:0, gapsin:0
+			# windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
+			# windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
+			# windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
+			# windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
 
-      bind = $mainMod, Q, exec, $terminal
-      bind = $mainMod, C, killactive,
-      bind = $mainMod, M, exit,
-      bind = $mainMod, E, exec, $fileManager
-      bind = $mainMod, V, togglefloating,
-      bind = $mainMod, R, exec, $menu
-      bind = $mainMod, P, pseudo, # dwindle
-      bind = $mainMod, T, togglesplit, # dwindle
+			# Keybindings
+			# Using Nix variables for $mainMod, $terminal, etc.
+			$mainMod = ${mainMod}
+			$terminal = ${terminal}
+			$fileManager = ${fileManager}
+			$menu = ${menu} # Ensure programs with arguments are quoted if needed by Hyprland syntax
 
-      # Move focus with mainMod + arrow keys (using L,H,K,J as in your config)
-      bind = $mainMod, L, movefocus, l
-      bind = $mainMod, H, movefocus, r
-      bind = $mainMod, K, movefocus, u
-      bind = $mainMod, J, movefocus, d
+			bind = $mainMod, Q, exec, $terminal
+			bind = $mainMod, C, killactive,
+			bind = $mainMod, M, exit,
+			bind = $mainMod, E, exec, $fileManager
+			bind = $mainMod, V, togglefloating,
+			bind = $mainMod, R, exec, $menu
+			bind = $mainMod, P, pseudo, # dwindle
+			bind = $mainMod, T, togglesplit, # dwindle
 
-      # Switch workspaces with mainMod + [0-9]
-      bind = $mainMod, 1, workspace, 1
-      bind = $mainMod, 2, workspace, 2
-      bind = $mainMod, 3, workspace, 3
-      bind = $mainMod, 4, workspace, 4
-      bind = $mainMod, 5, workspace, 5
-      bind = $mainMod, 6, workspace, 6
-      bind = $mainMod, 7, workspace, 7
-      bind = $mainMod, 8, workspace, 8
-      bind = $mainMod, 9, workspace, 9
-      bind = $mainMod, 0, workspace, 10
+			# Move focus with mainMod + arrow keys (using L,H,K,J as in your config)
+			bind = $mainMod, L, movefocus, l
+			bind = $mainMod, H, movefocus, r
+			bind = $mainMod, K, movefocus, u
+			bind = $mainMod, J, movefocus, d
 
-      # Move active window to a workspace with mainMod + SHIFT + [0-9]
-      bind = $mainMod SHIFT, 1, movetoworkspace, 1
-      bind = $mainMod SHIFT, 2, movetoworkspace, 2
-      bind = $mainMod SHIFT, 3, movetoworkspace, 3
-      bind = $mainMod SHIFT, 4, movetoworkspace, 4
-      bind = $mainMod SHIFT, 5, movetoworkspace, 5
-      bind = $mainMod SHIFT, 6, movetoworkspace, 6
-      bind = $mainMod SHIFT, 7, movetoworkspace, 7
-      bind = $mainMod SHIFT, 8, movetoworkspace, 8
-      bind = $mainMod SHIFT, 9, movetoworkspace, 9
-      bind = $mainMod SHIFT, 0, movetoworkspace, 10
+			# Switch workspaces with mainMod + [0-9]
+			bind = $mainMod, 1, workspace, 1
+			bind = $mainMod, 2, workspace, 2
+			bind = $mainMod, 3, workspace, 3
+			bind = $mainMod, 4, workspace, 4
+			bind = $mainMod, 5, workspace, 5
+			bind = $mainMod, 6, workspace, 6
+			bind = $mainMod, 7, workspace, 7
+			bind = $mainMod, 8, workspace, 8
+			bind = $mainMod, 9, workspace, 9
+			bind = $mainMod, 0, workspace, 10
 
-      # Special workspace (scratchpad)
-      bind = $mainMod, S, togglespecialworkspace, magic
-      bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+			# Move active window to a workspace with mainMod + SHIFT + [0-9]
+			bind = $mainMod SHIFT, 1, movetoworkspace, 1
+			bind = $mainMod SHIFT, 2, movetoworkspace, 2
+			bind = $mainMod SHIFT, 3, movetoworkspace, 3
+			bind = $mainMod SHIFT, 4, movetoworkspace, 4
+			bind = $mainMod SHIFT, 5, movetoworkspace, 5
+			bind = $mainMod SHIFT, 6, movetoworkspace, 6
+			bind = $mainMod SHIFT, 7, movetoworkspace, 7
+			bind = $mainMod SHIFT, 8, movetoworkspace, 8
+			bind = $mainMod SHIFT, 9, movetoworkspace, 9
+			bind = $mainMod SHIFT, 0, movetoworkspace, 10
 
-      # Scroll through existing workspaces with mainMod + scroll
-      bind = $mainMod, mouse_down, workspace, e+1
-      bind = $mainMod, mouse_up, workspace, e-1
+			# Special workspace (scratchpad)
+			bind = $mainMod, S, togglespecialworkspace, magic
+			bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 
-      # Move/resize windows with mainMod + LMB/RMB and dragging
-      bindm = $mainMod, mouse:272, movewindow
-      bindm = $mainMod, mouse:273, resizewindow
+			# Scroll through existing workspaces with mainMod + scroll
+			bind = $mainMod, mouse_down, workspace, e+1
+			bind = $mainMod, mouse_up, workspace, e-1
 
-      # Laptop multimedia keys
-      bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-      bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-      bindel = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-      bindel = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-      bindel = ,XF86MonBrightnessUp, exec, brightnessctl s 10%+
-      bindel = ,XF86MonBrightnessDown, exec, brightnessctl s 10%-
+			# Move/resize windows with mainMod + LMB/RMB and dragging
+			bindm = $mainMod, mouse:272, movewindow
+			bindm = $mainMod, mouse:273, resizewindow
 
-      # Playerctl binds
-      bindl = , XF86AudioNext, exec, playerctl next
-      bindl = , XF86AudioPause, exec, playerctl play-pause
-      bindl = , XF86AudioPlay, exec, playerctl play-pause
-      bindl = , XF86AudioPrev, exec, playerctl previous
+			# Laptop multimedia keys
+			bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+			bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+			bindel = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+			bindel = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+			bindel = ,XF86MonBrightnessUp, exec, brightnessctl s 10%+
+			bindel = ,XF86MonBrightnessDown, exec, brightnessctl s 10%-
 
-      # WINDOWS AND WORKSPACES RULES from original config
-      # These are generally better handled via structured options (settings.windowrulev2) if possible,
-      # but can also be placed here.
-      windowrulev2 = suppressevent maximize, class:.*
-      windowrulev2 = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
-      # Example v1 rule (commented out): # windowrule = float, ^(kitty)$
-      # Example v2 rule (commented out): # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-    '';
-  };
+			# Playerctl binds
+			bindl = , XF86AudioNext, exec, playerctl next
+			bindl = , XF86AudioPause, exec, playerctl play-pause
+			bindl = , XF86AudioPlay, exec, playerctl play-pause
+			bindl = , XF86AudioPrev, exec, playerctl previous
+
+			# WINDOWS AND WORKSPACES RULES from original config
+			# These are generally better handled via structured options (settings.windowrulev2) if possible,
+			# but can also be placed here.
+			windowrulev2 = suppressevent maximize, class:.*
+			windowrulev2 = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+			# Example v1 rule (commented out): # windowrule = float, ^(kitty)$
+			# Example v2 rule (commented out): # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
+		'';
+	};
 }

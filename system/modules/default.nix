@@ -13,6 +13,7 @@
 		./services.nix
 		./nvidia.nix
         ./fonts.nix
+        ./ollama.nix
 	];
 
 
