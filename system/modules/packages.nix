@@ -30,6 +30,7 @@
         libreoffice
 
 
+        nix
 		home-manager
 	];
 }
