@@ -19,6 +19,8 @@
 		xdg-desktop-portal-wlr
 		zip
 		lshw
+        libGLU
+        mesa
 
         #Compiler
         gcc
