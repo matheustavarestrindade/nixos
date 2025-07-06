@@ -24,6 +24,9 @@
         gcc
         gnumake
 
+        # Office
+        libreoffice
+
 
 		home-manager
 	];

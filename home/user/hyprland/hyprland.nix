@@ -142,7 +142,7 @@ in {
 			# Consider managing these with systemd services or Home Manager services for better control.
 
 			exec-once = ${terminal} # Example if you want to autostart terminal
-			exec-once = sleep 1 && waybar
+			exec-once = sleep 2 && waybar
 			exec-once = [workspace 2 silent] google-chrome-stable
 			# exec-once = nm-applet # The '&' is usually not needed with exec-once
 			# exec-once = hyprpaper # Example, if you had 'waybar & hyprpaper & firefox'
